@@ -5,7 +5,8 @@ import { z } from "zod";
 //       ^ 🕵️‍♂️
 
 export const toString = (num: unknown) => {
-  return String(num);
+  const mySchema = z.number()
+  return String(mySchema.parse(num));
 };
 
 // TESTS
