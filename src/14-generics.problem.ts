@@ -4,8 +4,11 @@ import { it } from "vitest";
 import { z } from "zod";
 import { Equal, Expect } from "./helpers/type-utils";
 
-const genericFetch = (url: string, schema: z.ZodSchema) => {
-  //                 ^ 🕵️‍♂️
+interface StarWarsType {
+  name: string;
+};
+
+const genericFetch = <T extends z.ZodType<StarWarsType>>(url: string, schema: T) => {
   return fetch(url)
     .then((res) => res.json())
     .then((result) => schema.parse(result));
